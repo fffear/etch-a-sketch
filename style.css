@@ -1,0 +1,43 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    margin: 9px auto 0;
+    border: 5px solid red;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    height: 85%;
+    width: 90%;
+    justify-content: center; 
+}
+
+#container2 {
+    margin: 9px auto 0;
+    border: 5px solid red;
+    border-radius: 5px;
+    display: grid;
+    height: 85%;
+    width: 90%;
+    justify-content: center; 
+}
+
+.hover {
+    background: #000;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background-color: lightseagreen;
+}
+
+h1 {
+    margin: 0 auto;
+    text-align: center;
+}

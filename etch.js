@@ -8,7 +8,7 @@ function makeOriginalGrid() {
 
     grid.classList.add("gridBox");
     gridContainer.appendChild(grid);
-    grid.addEventListener("mouseover", hoverBlack);
+    gridContainer.addEventListener("mouseover", hoverBlack);
   }
 }
 
@@ -18,6 +18,7 @@ makeOriginalGrid();
 function hoverBlack(e) {
   if (e.target.className === "gridBox") {
     e.target.style.background = "black";
+    e.target.style.opacity = 1;
   }
 }
 
@@ -37,15 +38,27 @@ function getRandColor() {
 function hoverRandColor(e) {
   if (e.target.className === "gridBox") {
     e.target.style.background = getRandColor();
+    e.target.style.opacity = 1;
   }
 }
 
 //Darken Grid
 function hoverDarken(e) {
-  if (e.target.className === "gridBox" && e.target.style.opacity < 1) {
-    e.target.style.opacity = (parseFloat(e.target.style.opacity) || 0) + 0.1;
-  } else if (e.target.className === "gridBox" && e.target.style.opacity == 1) {
-    e.target.style.opacity = (!parseFloat(e.target.style.opacity) && 0) + 0.1;
+  if (e.target.className == "gridBox") {
+    if (e.target.style.opacity < 1 && e.target.style.backgroundColor != "black") {
+      e.target.style.backgroundColor = "black";
+      e.target.style.opacity = (parseFloat(e.target.style.opacity) || 0) + 0.1;
+      console.log(e.target.style);
+    } else if (e.target.style.opacity == 1 & e.target.style.backgroundColor != "black") {
+      e.target.style.backgroundColor = "black";
+      e.target.style.opacity = 0.1;
+      console.log(e.target.style);
+    } else if (e.target.style.opacity < 1 && e.target.style.backgroundColor == "black") {
+      e.target.style.opacity = (parseFloat(e.target.style.opacity) || 0) + 0.1;
+      console.log(e.target.style);
+    } else if (e.target.style.opacity == 1 && e.target.style.backgroundColor == "black") {
+      return;
+    }
   }
 }
 
@@ -79,7 +92,7 @@ function createGrid() {
       gridContainer2.style.gridTemplateRows = `repeat(${gridNoValue}, 1fr)`;        
       gridContainer2.appendChild(grid);
 
-      grid.addEventListener("mouseover", hoverBlack);
+      gridContainer2.addEventListener("mouseover", hoverBlack);
     } 
   }
 }
@@ -134,92 +147,3 @@ navigation.addEventListener("click", function(e) {
     createGrid();
   }
 });
-
-/*
-    function hoverRandom() {
-      let letters = "0123456789ABCDEF";
-      let getRandLetter = letters.charAt(Math.floor(Math.random() * 16));
-      let randColor = "#";
-
-      for ( i = 0; i < 6; i++ ) {
-        getRandLetter = letters.charAt(Math.floor(Math.random() * 16));
-        randColor += getRandLetter;
-      }
-      grid.setAttribute("style", `background: ${randColor}`);
-    }
-
-newGridBtn.addEventListener("click", createGrid);
-*/
-
-
-
-
-
-
-
-  /*  for ( i = 0; i < gridNoValue * gridNoValue; i++ ) {
-        function hover() {
-          grid.classList.add("hover");
-        }
-          
-        const grid = document.createElement("div");
-        grid.classList.add("gridBox");
-        
-        document.getElementById("container").appendChild(grid);
-        grid.addEventListener("mouseover", hover);
-      } */
-
-      /*    Random Color   
-      for ( i = 0; i < gridNoValue * gridNoValue; i++ ) {
-        function hoverRandom() {
-          let letters = "0123456789ABCDEF";
-          let getRandLetter = letters.charAt(Math.floor(Math.random() * 16));
-          let randColor = "#";
-
-          for ( i = 0; i < 6; i++ ) {
-            getRandLetter = letters.charAt(Math.floor(Math.random() * 16));
-            randColor += getRandLetter;
-          }
-          grid.setAttribute("style", `background: ${randColor}`);
-        }
-        
-        const grid = document.createElement("div");
-        grid.classList.add("gridBox");
-        
-        let gridContainer2 = document.getElementById("container2");
-        gridContainer2.style.gridTemplateColumns = `repeat(${gridNoValue}, 1fr)`;
-        gridContainer2.style.gridTemplateRows = `repeat(${gridNoValue}, 1fr)`;        
-        gridContainer2.appendChild(grid);
-
-        grid.addEventListener("mouseover", hoverRandom);
-      } */
-
-
-      /* Normal
-        for ( i = 0; i < gridNoValue * gridNoValue; i++ ) {
-          function hover() {
-            grid.classList.add("hover");
-          }
-        
-          const grid = document.createElement("div");
-          grid.classList.add("gridBox");
-        
-          let gridContainer2 = document.getElementById("container2");
-          gridContainer2.style.gridTemplateColumns = `repeat(${gridNoValue}, 1fr)`;
-          gridContainer2.style.gridTemplateRows = `repeat(${gridNoValue}, 1fr)`;        
-          gridContainer2.appendChild(grid);
-
-          grid.addEventListener("mouseover", hover);
-        } 
-      */
-
-      /*    for ( i = 0; i < gridNoValue * gridNoValue; i++ ) {
-        
-        function hoverDarken() {
-          grid.setAttribute("style", "background: #000;");
-          let updatingOpacity = grid.style.opacity = 0.1;
-          updatingity += 0.1);
-                        
-        } */
-
-   
